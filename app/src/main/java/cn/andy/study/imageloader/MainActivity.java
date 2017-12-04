@@ -4,15 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.storage.StorageManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.bumptech.glide.load.engine.cache.ExternalCacheDiskCacheFactory;
-
 import java.io.File;
+import java.util.List;
 
 import cn.andy.study.imageloader.facebook.FBActivity;
 import cn.andy.study.imageloader.imageloader.DiskCacheImageLoader;
@@ -20,20 +18,17 @@ import cn.andy.study.imageloader.imageloader.ImageLoader;
 import cn.andy.study.imageloader.imageloader.downloader.AsyncResult;
 import cn.andy.study.imageloader.imageloader.downloader.MyAsyncTask;
 
+import static com.blankj.utilcode.util.SDCardUtils.getSDCardPaths;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button fb;
-    private Button ok;
-    private Button google;
     private Button clear;
-    private StorageManager sm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        sm = (StorageManager) MainActivity.this.getSystemService(Context.STORAGE_SERVICE);
 
         initView();
         initListener();
@@ -44,26 +39,10 @@ public class MainActivity extends AppCompatActivity {
         fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 使用FaceBook提供的图片加载工具加载图片
                 startActivity(new Intent(MainActivity.this, FBActivity.class));
             }
         });
 
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 使用OkHttp加载图片
-
-            }
-        });
-
-        google.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 使用google提供的图片加载工具
-
-            }
-        });
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,8 +56,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         fb = findViewById(R.id.image_loader_fb);
-        ok = findViewById(R.id.image_loader_ok);
-        google = findViewById(R.id.image_loader_google);
         clear = findViewById(R.id.clear_cache);
     }
 
@@ -128,13 +105,12 @@ public class MainActivity extends AppCompatActivity {
      * 清缓存
      */
     public void clear() {
-        File directory = new File(Environment.getExternalStorageDirectory().getPath());
-        File file = new File(ExternalCacheDiskCacheFactory.DEFAULT_DISK_CACHE_DIR);
-        if (directory.exists()) {
-            deleteFile(directory);
-        }
-        if (file.exists()) {
-            deleteFile(file);
+        List<String> paths = getSDCardPaths();
+        for (String path : paths) {
+            File filePath = new File(path);
+            if (filePath.exists()) {
+                deleteFile(filePath);
+            }
         }
     }
 

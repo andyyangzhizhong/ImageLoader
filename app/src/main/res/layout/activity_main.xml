@@ -12,19 +12,7 @@
         android:id="@+id/image_loader_fb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="FaceBook图片加载"/>
-
-    <Button
-        android:id="@+id/image_loader_ok"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="OKHttp图片加载"/>
-
-    <Button
-        android:id="@+id/image_loader_google"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Google图片加载"/>
+        android:text="图片加载"/>
 
     <Button
         android:id="@+id/clear_cache"
