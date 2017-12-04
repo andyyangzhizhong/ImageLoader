@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SimpleImageView">
+        <attr name="image_src" format="reference"/>
+        <attr name="scaleType">
+            <enum name="fitXy" value="0"/>
+            <enum name="centerCrop" value="1"/>
+            <enum name="centerInside" value="2"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="AsyncImageView">
+        <attr name="isMemoryCacheEnable" format="boolean"/>
+        <attr name="isDiskCacheEnable" format="boolean"/>
+        <attr name="loadingDrawable" format="reference"/>
+        <attr name="loadFailedDrawable" format="reference"/>
+        <attr name="cornerRadius" format="integer"/>
+        <attr name="imageShape">
+            <enum name="circled" value="0"/>
+            <enum name="rounded" value="1"/>
+            <enum name="normal" value="2"/>
+        </attr>
+    </declare-styleable>
+
+</resources>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/item_fb"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        fresco:failureImage="@drawable/common"
+        fresco:placeholderImage="@mipmap/ic_launcher"
+        fresco:roundAsCircle="true"
+        fresco:roundedCornerRadius="5dp"/>
+
+    <cn.andy.study.imageloader.CircleImageView
+        android:id="@+id/glide"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/common"
+        android:visibility="gone"/>
+
+    <cn.andy.study.imageloader.CircleImageView
+        android:id="@+id/picasso"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/common"
+        android:visibility="gone"/>
+
+    <cn.andy.study.imageloader.imageloader.view.AsyncImageView
+        android:id="@+id/item_my"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        app:imageShape="circled"
+        app:image_src="@drawable/common"
+        app:loadFailedDrawable="@drawable/failed"
+        app:loadingDrawable="@mipmap/ic_launcher"/>
+
+</RelativeLayout>
